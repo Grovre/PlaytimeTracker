@@ -8,7 +8,7 @@ import java.util.UUID;
 public final class PlaytimeTracker extends JavaPlugin {
 
     public static PlaytimeTracker plugin;
-    public static HashMap<UUID, Long> playerTimes;
+    public static HashMap<UUID, Long> playerSessionTimes;
 
     public static PlaytimeTracker getPlugin() {
         return plugin;
@@ -18,7 +18,7 @@ public final class PlaytimeTracker extends JavaPlugin {
     public void onEnable() {
         // Plugin startup logic
         plugin = this;
-        playerTimes = new HashMap<>();
+        playerSessionTimes = new HashMap<>();
 
     }
 

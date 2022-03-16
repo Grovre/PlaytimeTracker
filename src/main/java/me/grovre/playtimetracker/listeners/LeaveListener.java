@@ -13,6 +13,6 @@ public class LeaveListener implements Listener {
         Player player = e.getPlayer();
         long leaveTime = System.currentTimeMillis();
 
-        PlaytimeTracker.playerTimes.get(player.getUniqueId());
+        PlaytimeTracker.playerSessionTimes.get(player.getUniqueId());
     }
 }

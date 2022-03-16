@@ -13,6 +13,6 @@ public class JoinListener implements Listener {
         Player player = e.getPlayer();
         long joinTime = System.currentTimeMillis();
 
-        PlaytimeTracker.playerTimes.put(player.getUniqueId(), joinTime);
+        PlaytimeTracker.playerSessionTimes.put(player.getUniqueId(), joinTime);
     }
 }
