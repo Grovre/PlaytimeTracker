@@ -1,0 +1,7 @@
+name: PlaytimeTracker
+version: '${project.version}'
+main: me.grovre.playtimetracker.PlaytimeTracker
+api-version: 1.18
+authors: [ PoptartFromPluto ]
+description: Saves a player's total playtime from the time this plugin was added
+website: https://github.com/grovre
