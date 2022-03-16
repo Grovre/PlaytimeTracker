@@ -12,8 +12,10 @@ public class LeaveListener implements Listener {
     public void OnPlayerLeaveServer(PlayerQuitEvent e) {
         Player player = e.getPlayer();
         long leaveTime = System.currentTimeMillis();
+        Long joinTime = PlaytimeTracker.playerSessionTimes.remove(player.getUniqueId());
 
-        long totalSessionTime = leaveTime - PlaytimeTracker.playerSessionTimes.get(player.getUniqueId());
+        assert joinTime != null;
+        long totalSessionTime = leaveTime - joinTime;
         PlaytimeTracker.playerTotalTimes.merge(player.getUniqueId(), totalSessionTime, Long::sum);
     }
 }

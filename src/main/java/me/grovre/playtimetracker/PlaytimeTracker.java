@@ -1,5 +1,8 @@
 package me.grovre.playtimetracker;
 
+import me.grovre.playtimetracker.listeners.JoinListener;
+import me.grovre.playtimetracker.listeners.LeaveListener;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
@@ -22,6 +25,8 @@ public final class PlaytimeTracker extends JavaPlugin {
         playerSessionTimes = new HashMap<>();
         playerTotalTimes = new dbUtil().loadEntries();
 
+        Bukkit.getPluginManager().registerEvents(new JoinListener(), this);
+        Bukkit.getPluginManager().registerEvents(new LeaveListener(), this);
     }
 
     @Override

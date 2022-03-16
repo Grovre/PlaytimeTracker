@@ -12,24 +12,20 @@ import java.util.UUID;
 @SuppressWarnings("UnstableApiUsage")
 public class dbUtil {
 
-    private static final File f = new File(PlaytimeTracker.getPlugin().getDataFolder() + File.separator + "TimeData.json");
+    private final File f;
 
-    private boolean filePrep() {
-        if(!f.exists()) {
-            try {
-                return f.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-                return false;
-            }
-        } else {
-            return true;
+    public dbUtil() {
+        f = new File(PlaytimeTracker.getPlugin().getDataFolder() + File.separator + "TimeData.json");
+        System.out.println(f.getAbsolutePath());
+        try {
+            f.getParentFile().mkdir();
+            f.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
     public HashMap<UUID, Long> loadEntries() {
-        if(!filePrep()) return new HashMap<>();
-
         Gson gson = new Gson();
         FileReader fr = null;
 
@@ -41,6 +37,7 @@ public class dbUtil {
 
         assert fr != null;
         HashMap<UUID, Long> loaded = gson.fromJson(fr, new TypeToken<HashMap<UUID, Long>>(){}.getType());
+        if(loaded == null) return new HashMap<>();
 
         StringBuilder s = new StringBuilder("Loaded playtimes: ");
         for(Map.Entry<UUID, Long> entry : loaded.entrySet()) {
@@ -53,16 +50,16 @@ public class dbUtil {
     }
 
     public void saveEntries(@NonNull HashMap<UUID, Long> entries) {
-        if(!filePrep()) return;
-
         Gson gson = new Gson();
         FileWriter fw;
-
         try {
             fw = new FileWriter(f, false);
             fw.write(gson.toJson(entries));
+            fw.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        System.out.println("Saved " + entries.size() + " players' times");
     }
 }
