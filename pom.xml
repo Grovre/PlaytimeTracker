@@ -6,7 +6,7 @@
 
     <groupId>me.grovre</groupId>
     <artifactId>PlaytimeTracker</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <packaging>jar</packaging>
 
     <name>PlaytimeTracker</name>
