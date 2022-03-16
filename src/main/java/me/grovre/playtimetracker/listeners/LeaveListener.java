@@ -13,6 +13,7 @@ public class LeaveListener implements Listener {
         Player player = e.getPlayer();
         long leaveTime = System.currentTimeMillis();
 
-        PlaytimeTracker.playerSessionTimes.get(player.getUniqueId());
+        long totalSessionTime = leaveTime - PlaytimeTracker.playerSessionTimes.get(player.getUniqueId());
+        PlaytimeTracker.playerTotalTimes.merge(player.getUniqueId(), totalSessionTime, Long::sum);
     }
 }
